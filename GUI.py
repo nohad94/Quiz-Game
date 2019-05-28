@@ -1,4 +1,5 @@
 from tkinter import *
+from quizgame import *
 
 APP_NAME = "Quiz Game"
 
@@ -6,24 +7,37 @@ APP_NAME = "Quiz Game"
 class MainMenu:
     def __init__(self, master):
         self.master = master
-        self.master.geometry("500x500")
-        self.master.resizable(False, False)
+        self.master.geometry("500x700")
 
-        self.frame = Frame(self.master)
-        self.frame.pack_propagate(0)
-        self.frame.grid(row=0, columnspan=5)
+        self.frame = Frame(self.master, width=500, height=500, highlightbackground="black", highlightcolor="black", highlightthickness=2)
+        self.frame.pack(fill="both", expand=True)
+        self.frame.rowconfigure(2, weight=0)
+        self.frame.rowconfigure(3, weight=0)
+        self.frame.rowconfigure(4, weight=0)
+        self.frame.rowconfigure(5, weight=1)
+        self.frame.rowconfigure(6, weight=0)
+        self.frame.columnconfigure(1, weight=1)
+        self.frame.columnconfigure(2, weight=0)
+        self.frame.columnconfigure(3, weight=1)
 
-        self.title = Label(self.frame, width=35, height=5, text="Quiz Game", font="times 19")
-        self.title.grid()
+        self.title = Label(self.frame, width=35, height=10, text="Quiz Game", font="times 19")
+        self.title.grid(row=0, column=0, columnspan=5, rowspan=2, sticky="nsew")
 
-        self.button_label1 = Label(self.master, width=100, height=100)
-        self.button_label1.grid(row=2, column=2)
-        self.button_label2 = Label(self.master, width=100, height=100)
-        self.button_label2.grid(row=3, column=2)
-        self.button_label3 = Label(self.master, width=25, height=5, borderwidth=2, text="By: Nohad Zamel", anchor=S)
-        self.button_label3.grid(row=5, column=2)
-        self.button_label4 = Label(self.master, width=100, height=100)
-        self.button_label4.grid(row=4, column=2)
+        self.empty_frame1 = Label(self.frame, width=10, height=10)
+        self.empty_frame1.grid(row=2, column=1, rowspan=5, sticky="nsew")
+        self.empty_frame2 = Label(self.frame, width=10, height=10)
+        self.empty_frame2.grid(row=2, column=3, rowspan=5, sticky="nsew")
+
+        self.button_label1 = Label(self.frame, width=25, height=25, borderwidth=2, relief="raised")
+        self.button_label1.grid(row=2, column=2, sticky="nsew")
+        self.button_label2 = Label(self.frame, width=25, height=25, borderwidth=2, relief="raised")
+        self.button_label2.grid(row=3, column=2, sticky="nsew")
+        self.button_label3 = Label(self.frame, width=25, height=25, borderwidth=2, relief="raised")
+        self.button_label3.grid(row=4, column=2, sticky="nsew")
+        self.empty_label = Label(self.frame, width=25, height=25)
+        self.empty_label.grid(row=5, column=2, sticky="nsew")
+        self.button_label4 = Label(self.frame, width=25, height=5, text="By: Nohad Zamel", anchor=S)
+        self.button_label4.grid(row=6, column=2, sticky="nsew")
 
         self.button1 = Button(self.button_label1, text="Play Game", width=25, height=5, command=self.open_game_window)
         self.button1.grid()
@@ -31,7 +45,7 @@ class MainMenu:
         self.button2 = Button(self.button_label2, text="Options", width=25, height=5, command=self.open_options_window)
         self.button2.grid()
 
-        self.button3 = Button(self.button_label4, text="High Scores", width=25, height=5, command=self.open_high_scores_window)
+        self.button3 = Button(self.button_label3, text="High Scores", width=25, height=5, command=self.open_high_scores_window)
         self.button3.grid()
 
     def open_game_window(self):
@@ -50,24 +64,30 @@ class MainMenu:
 class Game:
     def __init__(self, master):
         self.master = master
-        self.master.geometry("500x500")
-        self.master.resizable(False, False)
+        self.master.geometry("500x700")
 
-        self.frame = Frame(self.master)
-        self.frame.pack_propagate(0)
-        self.frame.grid(row=0, columnspan=5)
+        self.frame = Frame(self.master, width=500, height=500, highlightbackground="black", highlightcolor="black", highlightthickness=2)
+        self.frame.pack(fill="both", expand=True)
 
-        self.title = Label(self.frame, width=35, height=5, text="What is the fifth element in the 4th row of the periodic table?", font="times 19", wraplength=500)
-        self.title.grid()
+        self.frame.rowconfigure(2, weight=0)
+        self.frame.rowconfigure(3, weight=1)
+        self.frame.rowconfigure(4, weight=0)
+        self.frame.rowconfigure(5, weight=2)
+        self.frame.columnconfigure(0, weight=2)
+        self.frame.columnconfigure(2, weight=1)
+        self.frame.columnconfigure(4, weight=2)
 
-        self.button_label1 = Label(self.master, width=100, height=50, font="times 5")
-        self.button_label1.grid(row=3, column=1)
-        self.button_label2 = Label(self.master, width=100, height=50, font="times 5")
-        self.button_label2.grid(row=3, column=3)
-        self.button_label3 = Label(self.master, width=100, height=50, font="times 5")
-        self.button_label3.grid(row=5, column=1)
-        self.button_label4 = Label(self.master, width=100, height=50, font="times 5")
-        self.button_label4.grid(row=5, column=3)
+        self.title = Label(self.frame, width=35, height=10, text="Question prompt goes here", font="times 19")
+        self.title.grid(row=0, column=0, columnspan=5, rowspan=2, sticky="nsew")
+
+        self.button_label1 = Label(self.frame, width=20, height=4, font="times 5")
+        self.button_label1.grid(row=2, column=1)
+        self.button_label2 = Label(self.frame, width=20, height=4, font="times 5")
+        self.button_label2.grid(row=2, column=3)
+        self.button_label3 = Label(self.frame, width=20, height=4, font="times 5")
+        self.button_label3.grid(row=4, column=1)
+        self.button_label4 = Label(self.frame, width=20, height=4, font="times 5")
+        self.button_label4.grid(row=4, column=3)
 
         self.button1 = Button(self.button_label1, text="A", width=20, height=4)
         self.button1.grid()
@@ -82,19 +102,18 @@ class Game:
         self.button4.grid()
 
 
-
 class Options:
     def __init__(self, master):
         self.master = master
         self.master.geometry("500x500")
-        self.master.resizable(False, False)
+
 
 
 class HighScore:
     def __init__(self, master):
         self.master = master
         self.master.geometry("500x500")
-        self.master.resizable(False, False)
+
 
 
 def main():
