@@ -1,5 +1,5 @@
 from tkinter import *
-from quizgame import *
+from Question import *
 from Game import *
 from Option import *
 from HighScore import *
@@ -62,7 +62,6 @@ class MainMenu:
     def open_high_scores_window(self):
         self.newwindow = Toplevel(self.master)
         self.app = HighScore(self.newwindow)
-
 
 
 def main():
