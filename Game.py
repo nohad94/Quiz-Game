@@ -10,7 +10,7 @@ class Game:
     def __init__(self, master):
         self.user_answer = ""
         self.question_number = 0
-        self.question_list = list(set([random.choice(list_of_questions) for x in range(Game.NUM)]))
+        self.question_list = Game.create_question_list(self)
 
         self.master = master
         self.master.geometry("500x700")
@@ -60,7 +60,19 @@ class Game:
         self.button4 = Button(self.button_label4, text="", width=20, height=4, command=self.return_text_4)
         self.button4.grid()
 
+    def create_question_list(self):
+        question_list = []
+        while len(question_list) <= Game.NUM:
+            if len(question_list) == Game.NUM:
+                return question_list
+            question = random.choice(list_of_questions)
+            if question in question_list:
+                pass
+            else:
+                question_list.append(question)
+
     def return_text_1(self):
+        print(self.question_list)
         self.user_answer = self.button1["text"]
         if self.user_answer == "Yes":
             self.title["text"] = self.question_list[0]
@@ -80,6 +92,7 @@ class Game:
             else:
                 pass
             self.question_list = self.question_list[1:]
+            Game.check_question_list(self)
             self.title["text"] = self.question_list[0]
             self.possibilities = dic_possibilities[self.title["text"]]
             self.possibility1 = self.possibilities[0]
@@ -92,6 +105,7 @@ class Game:
             self.button4["text"] = self.possibility4
 
     def return_text_2(self):
+        print(self.question_list)
         self.user_answer = self.button2["text"]
         if self.user_answer == "No":
             self.master.destroy()
@@ -102,6 +116,7 @@ class Game:
             else:
                 pass
             self.question_list = self.question_list[1:]
+            Game.check_question_list(self)
             self.title["text"] = self.question_list[0]
             self.possibilities = dic_possibilities[self.title["text"]]
             self.possibility1 = self.possibilities[0]
@@ -114,6 +129,7 @@ class Game:
             self.button4["text"] = self.possibility4
 
     def return_text_3(self):
+        print(self.question_list)
         self.user_answer = self.button3["text"]
         if self.user_answer == dic_answers[self.title["text"]]:
             Game.NUM_CORRECT += 1
@@ -121,6 +137,7 @@ class Game:
         else:
             pass
         self.question_list = self.question_list[1:]
+        Game.check_question_list(self)
         self.title["text"] = self.question_list[0]
         self.possibilities = dic_possibilities[self.title["text"]]
         self.possibility1 = self.possibilities[0]
@@ -133,6 +150,7 @@ class Game:
         self.button4["text"] = self.possibility4
 
     def return_text_4(self):
+        print(self.question_list)
         self.user_answer = self.button4["text"]
         if self.user_answer == dic_answers[self.title["text"]]:
             Game.NUM_CORRECT += 1
@@ -140,6 +158,7 @@ class Game:
         else:
             pass
         self.question_list = self.question_list[1:]
+        Game.check_question_list(self)
         self.title["text"] = self.question_list[0]
         self.possibilities = dic_possibilities[self.title["text"]]
         self.possibility1 = self.possibilities[0]
@@ -150,4 +169,8 @@ class Game:
         self.button3["text"] = self.possibility3
         self.possibility4 = self.possibilities[3]
         self.button4["text"] = self.possibility4
+
+    def check_question_list(self):
+        if len(self.question_list) == 0:
+            self.master.destroy()
 
