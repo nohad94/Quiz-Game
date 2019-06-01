@@ -29,7 +29,7 @@ dic_answers = {
 
     "What is the largest mammal in the world?": "Blue Whale",
     "What is the most popular sport in the world?": "Football",
-    "What is the fifth element of the periodic table": "Boron",
+    "What is the fifth element of the periodic table?": "Boron",
     "Which first electrical item did Thomas Edison invent?": "Light Bulb",
     "Which of these sports is always played on grass?": "Football",
     "What is the largest body in the solar system?": "The sun",
