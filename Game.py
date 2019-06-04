@@ -1,6 +1,7 @@
 from MainMenu import *
 from Question import *
 import random
+from GameScore import *
 
 
 class Game:
@@ -60,6 +61,26 @@ class Game:
         self.button4 = Button(self.button_label4, text="", width=20, height=4, command=self.return_text_4)
         self.button4.grid()
 
+    def open_game_window(self):
+        self.newwindow = Toplevel(self.master)
+        self.app = GameScore(self.newwindow)
+
+    def change_text(self):
+        self.question_list = self.question_list[1:]
+        if len(self.question_list) == 0:
+            self.open_game_window()
+        else:
+            self.title["text"] = self.question_list[0]
+            self.possibilities = dic_possibilities[self.title["text"]]
+            self.possibility1 = self.possibilities[0]
+            self.button1["text"] = self.possibility1
+            self.possibility2 = self.possibilities[1]
+            self.button2["text"] = self.possibility2
+            self.possibility3 = self.possibilities[2]
+            self.button3["text"] = self.possibility3
+            self.possibility4 = self.possibilities[3]
+            self.button4["text"] = self.possibility4
+
     def create_question_list(self):
         question_list = []
         while len(question_list) <= Game.NUM:
@@ -91,18 +112,7 @@ class Game:
                 self.score["text"] = (str(Game.NUM_CORRECT) + " out of " + str(Game.NUM))
             else:
                 pass
-            self.question_list = self.question_list[1:]
-            Game.check_question_list(self)
-            self.title["text"] = self.question_list[0]
-            self.possibilities = dic_possibilities[self.title["text"]]
-            self.possibility1 = self.possibilities[0]
-            self.button1["text"] = self.possibility1
-            self.possibility2 = self.possibilities[1]
-            self.button2["text"] = self.possibility2
-            self.possibility3 = self.possibilities[2]
-            self.button3["text"] = self.possibility3
-            self.possibility4 = self.possibilities[3]
-            self.button4["text"] = self.possibility4
+            self.change_text()
 
     def return_text_2(self):
         print(self.question_list)
@@ -115,18 +125,7 @@ class Game:
                 self.score["text"] = (str(Game.NUM_CORRECT) + " out of " + str(Game.NUM))
             else:
                 pass
-            self.question_list = self.question_list[1:]
-            Game.check_question_list(self)
-            self.title["text"] = self.question_list[0]
-            self.possibilities = dic_possibilities[self.title["text"]]
-            self.possibility1 = self.possibilities[0]
-            self.button1["text"] = self.possibility1
-            self.possibility2 = self.possibilities[1]
-            self.button2["text"] = self.possibility2
-            self.possibility3 = self.possibilities[2]
-            self.button3["text"] = self.possibility3
-            self.possibility4 = self.possibilities[3]
-            self.button4["text"] = self.possibility4
+            self.change_text()
 
     def return_text_3(self):
         print(self.question_list)
@@ -136,18 +135,7 @@ class Game:
             self.score["text"] = (str(Game.NUM_CORRECT) + " out of " + str(Game.NUM))
         else:
             pass
-        self.question_list = self.question_list[1:]
-        Game.check_question_list(self)
-        self.title["text"] = self.question_list[0]
-        self.possibilities = dic_possibilities[self.title["text"]]
-        self.possibility1 = self.possibilities[0]
-        self.button1["text"] = self.possibility1
-        self.possibility2 = self.possibilities[1]
-        self.button2["text"] = self.possibility2
-        self.possibility3 = self.possibilities[2]
-        self.button3["text"] = self.possibility3
-        self.possibility4 = self.possibilities[3]
-        self.button4["text"] = self.possibility4
+        self.change_text()
 
     def return_text_4(self):
         print(self.question_list)
@@ -157,20 +145,5 @@ class Game:
             self.score["text"] = (str(Game.NUM_CORRECT) + " out of " + str(Game.NUM))
         else:
             pass
-        self.question_list = self.question_list[1:]
-        Game.check_question_list(self)
-        self.title["text"] = self.question_list[0]
-        self.possibilities = dic_possibilities[self.title["text"]]
-        self.possibility1 = self.possibilities[0]
-        self.button1["text"] = self.possibility1
-        self.possibility2 = self.possibilities[1]
-        self.button2["text"] = self.possibility2
-        self.possibility3 = self.possibilities[2]
-        self.button3["text"] = self.possibility3
-        self.possibility4 = self.possibilities[3]
-        self.button4["text"] = self.possibility4
-
-    def check_question_list(self):
-        if len(self.question_list) == 0:
-            self.master.destroy()
+        self.change_text()
 

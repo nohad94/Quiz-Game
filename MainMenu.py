@@ -3,6 +3,7 @@ from Question import *
 from Game import *
 from Option import *
 from HighScore import *
+from GameScore import *
 
 APP_NAME = "Quiz Game"
 
