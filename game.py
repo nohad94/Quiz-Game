@@ -1,12 +1,11 @@
-from MainMenu import *
-from Question import *
+from mainmenu import *
+from question import *
 import random
-from GameScore import *
 
 
 class Game:
-    NUM = 10
     NUM_CORRECT = 0
+    NUM = 10
 
     def __init__(self, master):
         self.user_answer = ""
@@ -63,7 +62,7 @@ class Game:
 
     def open_game_window(self):
         self.newwindow = Toplevel(self.master)
-        self.app = GameScore(self.newwindow)
+        self.app = GameScore(self.newwindow, Game)
 
     def change_text(self):
         self.question_list = self.question_list[1:]

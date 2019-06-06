@@ -1,9 +1,9 @@
 from tkinter import *
-from Question import *
-from Game import *
-from Option import *
-from HighScore import *
-from GameScore import *
+from question import *
+from game import *
+from option import *
+from highscore import *
+from gamescore import *
 
 APP_NAME = "Quiz Game"
 

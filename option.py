@@ -1,4 +1,4 @@
-from MainMenu import *
+from mainmenu import *
 
 
 class Options:

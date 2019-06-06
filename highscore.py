@@ -1,4 +1,6 @@
-from MainMenu import *
+from mainmenu import *
+import tkinter
+import pickle
 
 
 class HighScore:
@@ -52,46 +54,46 @@ class HighScore:
         self.frame3 = Frame(self.frame, width=500)
         self.frame3.grid(row=3, rowspan=10, column=0, columnspan=3, sticky="NSWE")
 
-        self.frame3_label1 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label1 = Label(self.frame3, text=score_dict["First"][0] + " with " + str(score_dict["First"][1]) + " points!", relief="raised")
         self.frame3_label1.grid(row=3, column=0, sticky="NSWE")
-        self.frame3_label2 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label2 = Label(self.frame3, text=score_dict["Second"][0] + " with " + str(score_dict["Second"][1]) + " points!", relief="raised")
         self.frame3_label2.grid(row=4, column=0, sticky="NSWE")
-        self.frame3_label3 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label3 = Label(self.frame3, text=score_dict["Third"][0] + " with " + str(score_dict["Third"][1]) + " points!", relief="raised")
         self.frame3_label3.grid(row=5, column=0, sticky="NSWE")
-        self.frame3_label4 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label4 = Label(self.frame3, text=score_dict["Fourth"][0] + " with " + str(score_dict["Fourth"][1]) + " points!", relief="raised")
         self.frame3_label4.grid(row=6, column=0, sticky="NSWE")
-        self.frame3_label5 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label5 = Label(self.frame3, text=score_dict["Fifth"][0] + " with " + str(score_dict["Fifth"][1]) + " points!", relief="raised")
         self.frame3_label5.grid(row=7, column=0, sticky="NSWE")
-        self.frame3_label6 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label6 = Label(self.frame3, text=score_dict["Sixth"][0] + " with " + str(score_dict["Sixth"][1]) + " points!", relief="raised")
         self.frame3_label6.grid(row=8, column=0, sticky="NSWE")
-        self.frame3_label7 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label7 = Label(self.frame3, text=score_dict["Seventh"][0] + " with " + str(score_dict["Seventh"][1]) + " points!", relief="raised")
         self.frame3_label7.grid(row=9, column=0, sticky="NSWE")
-        self.frame3_label8 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label8 = Label(self.frame3, text=score_dict["Eighth"][0] + " with " + str(score_dict["Eighth"][1]) + " points!", relief="raised")
         self.frame3_label8.grid(row=10, column=0, sticky="NSWE")
-        self.frame3_label9 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label9 = Label(self.frame3, text=score_dict["Ninth"][0] + " with " + str(score_dict["Ninth"][1]) + " points!", relief="raised")
         self.frame3_label9.grid(row=11, column=0, sticky="NSWE")
-        self.frame3_label10 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label10 = Label(self.frame3, text=score_dict["Tenth"][0] + " with " + str(score_dict["Tenth"][1]) + " points!", relief="raised")
         self.frame3_label10.grid(row=12, column=0, sticky="NSWE")
 
-        self.frame3_label11 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label11 = Label(self.frame3, text=score_dict["Eleventh"][0] + " with " + str(score_dict["Eleventh"][1]) + " points!", relief="raised")
         self.frame3_label11.grid(row=3, column=2, sticky="NSWE")
-        self.frame3_label12 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label12 = Label(self.frame3, text=score_dict["Twelfth"][0] + " with " + str(score_dict["Twelfth"][1]) + " points!", relief="raised")
         self.frame3_label12.grid(row=4, column=2, sticky="NSWE")
-        self.frame3_label13 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label13 = Label(self.frame3, text=score_dict["Thirteenth"][0] + " with " + str(score_dict["Thirteenth"][1]) + " points!", relief="raised")
         self.frame3_label13.grid(row=5, column=2, sticky="NSWE")
-        self.frame3_label14 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label14 = Label(self.frame3, text=score_dict["Fourteenth"][0] + " with " + str(score_dict["Fourteenth"][1]) + " points!", relief="raised")
         self.frame3_label14.grid(row=6, column=2, sticky="NSWE")
-        self.frame3_label15 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label15 = Label(self.frame3, text=score_dict["Fifteenth"][0] + " with " + str(score_dict["Fifteenth"][1]) + " points!", relief="raised")
         self.frame3_label15.grid(row=7, column=2, sticky="NSWE")
-        self.frame3_label16 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label16 = Label(self.frame3, text=score_dict["Sixteenth"][0] + " with " + str(score_dict["Sixteenth"][1]) + " points!", relief="raised")
         self.frame3_label16.grid(row=8, column=2, sticky="NSWE")
-        self.frame3_label17 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label17 = Label(self.frame3, text=score_dict["Seventeenth"][0] + " with " + str(score_dict["Seventeenth"][1]) + " points!", relief="raised")
         self.frame3_label17.grid(row=9, column=2, sticky="NSWE")
-        self.frame3_label18 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label18 = Label(self.frame3, text=score_dict["Eighteenth"][0] + " with " + str(score_dict["Eighteenth"][1]) + " points!", relief="raised")
         self.frame3_label18.grid(row=10, column=2, sticky="NSWE")
-        self.frame3_label19 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label19 = Label(self.frame3, text=score_dict["Nineteenth"][0] + " with " + str(score_dict["Nineteenth"][1]) + " points!", relief="raised")
         self.frame3_label19.grid(row=11, column=2, sticky="NSWE")
-        self.frame3_label20 = Label(self.frame3, text="Label", relief="raised")
+        self.frame3_label20 = Label(self.frame3, text=score_dict["Twentieth"][0] + " with " + str(score_dict["Twentieth"][1]) + " points!", relief="raised")
         self.frame3_label20.grid(row=12, column=2, sticky="NSWE")
 
         self.frame3.columnconfigure(0, weight=1)
@@ -108,4 +110,8 @@ class HighScore:
         self.frame3.rowconfigure(11, weight=1)
         self.frame3.rowconfigure(12, weight=1)
 
+
+infile = open("currenthighscores", "rb")
+score_dict = pickle.load(infile)
+infile.close()
 
