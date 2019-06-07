@@ -1,6 +1,7 @@
 from tkinter import *
 from game import *
 from highscoreentries import *
+import pickle
 
 
 class GameScore:
@@ -26,16 +27,16 @@ class GameScore:
         self.name_label = Label(self.frame, text="Name: ", )
         self.name_label.grid(column=0, row=2, sticky="NSWE")
 
-        self.submit = Button(self.frame, text="Submit", command=self.get_name)
+        self.submit = Button(self.frame, text="Submit", command=lambda: self.update_high_scores())
         self.submit.grid(column=2, row=2)
 
         self.empty_label1 = Label(self.frame)
         self.empty_label1.grid(column=0, row=3, columnspan=3, sticky="NSWE")
 
-        self.current_top_score = Label(self.frame, text=("Top score: " + score_dict["First"][0] + " with " + str(score_dict["First"][1]) + " points!"), anchor=W)
+        self.current_top_score = Label(self.frame, text=my_list[0][0] + str(my_list[0][1]), anchor=W)
         self.current_top_score.grid(column=0, row=4, rowspan=2, columnspan=3, sticky="NSWE")
 
-        self.minimum_score = Label(self.frame, text=("Lowest score: " + score_dict["Twentieth"][0] + " with " + str(score_dict["Twentieth"][1]) + " points!"), anchor=W)
+        self.minimum_score = Label(self.frame, text=my_list[-1][0] + str(my_list[-1][1]), anchor=W)
         self.minimum_score.grid(column=0, row=6, rowspan=2, columnspan=3, sticky="NSWE")
 
         self.name_title = Label(self.frame, text="Your Score: " + str(Game.NUM_CORRECT), font="Times 20")
@@ -49,20 +50,31 @@ class GameScore:
         print(name_of_user)
         return name_of_user
 
+    def get_current_high_score(self):
+        file1 = open("currenthighscores.txt", "rb")
+        current_high_score_list = pickle.load(file1)
+        file1.close()
+        return current_high_score_list
 
-infile = open("currenthighscores", "rb")
-score_dict = pickle.load(infile)
-infile.close()
+    def new_score_list(self):
+        user_name = self.get_name()
+        user_high_score_entry = [str(user_name), self.game.NUM_CORRECT]
+        current_scores = self.get_current_high_score()
+        current_scores.append(user_high_score_entry)
+        print(current_scores)
+        final_list = sorted(current_scores, key=lambda x: x[1], reverse=True)
+        print(final_list)
+        return final_list
 
-# def determine_placement():
-#     f = open("currenthighscores", "wb")
-#     score_dict_2 = pickle.load(f)
-#     if score_dict_2["Twentieth"][1] >= Game.NUM_CORRECT:
-#         pass
-#     else:
-#         for x in score_dict_2:
-#             if x[1] < Game.NUM_CORRECT:
+    def update_high_scores(self):
+        new_list = self.new_score_list()
+        f1 = open("currenthighscores.txt", "wb")
+        pickle.dump(new_list, f1)
+        f1.close()
 
 
+outfile = open("currenthighscores.txt", "rb")
+my_list = pickle.load(outfile)
+outfile.close()
 
 
